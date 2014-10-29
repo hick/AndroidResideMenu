@@ -31,3 +31,5 @@ proguard/
 .gradle/
 build/
 .DS_Store
+/ResideMenu/.settings/org.eclipse.jdt.core.prefs
+/ResideMenuDemo/.settings/org.eclipse.jdt.core.prefs

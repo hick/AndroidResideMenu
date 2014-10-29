@@ -1,3 +1,7 @@
+/**
+ * 左右菜单都是该 activity 控制
+ */
+
 package com.special.ResideMenuDemo;
 
 import android.os.Bundle;
@@ -14,6 +18,8 @@ public class MenuActivity extends FragmentActivity implements View.OnClickListen
 
     private ResideMenu resideMenu;
     private MenuActivity mContext;
+    // @A001 添加菜单定义
+    private ResideMenuItem itemChapter2;
     private ResideMenuItem itemHome;
     private ResideMenuItem itemProfile;
     private ResideMenuItem itemCalendar;
@@ -43,16 +49,20 @@ public class MenuActivity extends FragmentActivity implements View.OnClickListen
         resideMenu.setScaleValue(0.6f);
 
         // create menu items;
+        // @A001 添加菜单: icon_home 就不改了
+        itemChapter2 = new ResideMenuItem(this, R.drawable.icon_home,     "2.活动");
         itemHome     = new ResideMenuItem(this, R.drawable.icon_home,     "主页");
         itemProfile  = new ResideMenuItem(this, R.drawable.icon_profile,  "资料");
         itemCalendar = new ResideMenuItem(this, R.drawable.icon_calendar, "日历");
         itemSettings = new ResideMenuItem(this, R.drawable.icon_settings, "设置");
 
+        itemChapter2.setOnClickListener(this);
         itemHome.setOnClickListener(this);
         itemProfile.setOnClickListener(this);
         itemCalendar.setOnClickListener(this);
         itemSettings.setOnClickListener(this);
 
+        resideMenu.addMenuItem(itemChapter2, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemHome, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemProfile, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemCalendar, ResideMenu.DIRECTION_RIGHT);
@@ -83,8 +93,11 @@ public class MenuActivity extends FragmentActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
 
+    	// @A001 添加菜单
         if (view == itemHome){
             changeFragment(new HomeFragment());
+        }else if (view == itemChapter2){
+            changeFragment(new Chapter2Fragment());
         }else if (view == itemProfile){
             changeFragment(new ProfileFragment());
         }else if (view == itemCalendar){
